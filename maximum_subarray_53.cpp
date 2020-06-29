@@ -12,3 +12,20 @@ public:
         return maxSub;
     }
 };
+
+/* Method 2 */
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxCurrent = nums[0];
+        int ans = nums[0];
+        
+        for (int i = 1; i < nums.size(); i++) {
+            maxCurrent = max(maxCurrent + nums[i], nums[i]);
+            
+            if (ans < maxCurrent)
+                ans = maxCurrent;
+        }
+        return (ans);
+    }   
+};
