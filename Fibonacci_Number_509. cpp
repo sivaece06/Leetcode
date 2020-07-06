@@ -1,0 +1,29 @@
+/* Recursion */
+/* Time Complexity: T(n) = T(n-1) + T(n-2) which is exponential. */
+class Solution {
+public:
+    int fib(int N) {
+        if (N <= 1)
+            return N;
+        
+        return(fib(N-1) + fib(N-2)); 
+    }
+};
+
+/* DP approach */
+class Solution {
+public:
+    int fib(int N) { 
+        vector<int> fibonacci(N+1,0);  
+        if(N==0) 
+          return 0;
+          
+        fibonacci[0] = 0; 
+        fibonacci[1] = 1; 
+        
+        for(int i = 2; i<=N; i++) 
+            fibonacci[i] = fibonacci[i-1] + fibonacci[i-2];
+            
+        return fibonacci[N];
+    }
+ };
