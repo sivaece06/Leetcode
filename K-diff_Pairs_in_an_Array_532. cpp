@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if (nums.size() == 0 || k < 0)   
+            return 0;
+        
+        map<int, int> x;
+        int count = 0;
+        
+        for (int i : nums) {
+            x[i]++;
+        }
+        
+         if(k==0) {
+             for(auto itr : x) 
+                 if(itr.second >1) 
+                     count++;
+         } else {
+             for(auto itr : x)
+                 if(x.count(itr.first +k)) 
+                     count++;
+         }
+        return count;
+    }
+};
