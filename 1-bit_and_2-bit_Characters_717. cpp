@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool isOneBitCharacter(vector<int>& bits) {
+           for (int i = 0; i<bits.size(); i++){
+            if (bits.size()-i==1) return true; //if you reach last position, must be a 0 bit, return true
+            if (bits[i]==1) i++;               //if bits[i]==1, move index over, otherwise it was a 0 and continue
+        }
+        return false;    
+    }
+};
