@@ -54,3 +54,35 @@ public:
         return (twoSum(nums, k));
     }
 };
+
+/* Using set */
+
+class Solution {
+public:
+    
+    
+    bool findTarget(TreeNode* root, int k) {
+        unordered_set<int>  st;
+        stack<TreeNode *> stak;
+        
+        stak.push(root);
+        
+        while (!stak.empty()) {
+            
+            TreeNode *temp = stak.top();
+            
+            stak.pop();
+            if (temp) {
+                if (st.count(k - temp->val))
+                    return true;
+                else {
+                    st.insert(temp->val);
+                    stak.push(temp->left);
+                    stak.push(temp->right);
+                }
+            }
+        }
+        
+        return false;
+    }
+};
