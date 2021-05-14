@@ -11,24 +11,32 @@ Return true if there is a cycle in the linked list. Otherwise, return false
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
-        ListNode *slow = head;
-        ListNode *fast = head;
+    ListNode* oddEvenList(ListNode* head) {
+        ListNode *odd = head, *even, *evenhead;
         
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
+        if (head == nullptr)
+            return (head);
+        
+        even = head->next;
+        evenhead = even;
+        
+        while (even && even->next) {
+            odd->next = even->next;
+            odd = odd->next;
             
-            if (slow == fast)
-                return true;
+            even->next = odd->next;
+            even = even->next;
         }
         
-        return false;
+        odd->next = evenhead;
+        
+        return (head);
     }
-    
 };
